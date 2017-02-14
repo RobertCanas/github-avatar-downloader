@@ -5,6 +5,8 @@ console.log('Welcome to GitHub Avatar Downloader!');
 
 var GITHUB_USER = "RobertCanas";
 var GITHUB_TOKEN = "321b033b375060fd93ef57506f6e0b11eb996425";
+var owner = process.argv[2];
+var name = process.argv[3];
 
 
 function downloadImageByURL(url, filePath) {
@@ -19,7 +21,7 @@ function downloadImageByURL(url, filePath) {
 function getRepoContributors(repoOwner, repoName, cb) {
 
   var requestURL = {
-    url: 'https://' + GITHUB_USER + ':' + GITHUB_TOKEN + '@api.github.com/repos/' + repoOwner + '/' + repoName + '/contributors',
+    url: 'https://' + GITHUB_USER + ':' + GITHUB_TOKEN + '@api.github.com/repos/' + owner + '/' + name + '/contributors',
     headers: {
       'User-Agent': 'GitHub Avatar Downloader - Student Project'
     }
@@ -44,4 +46,4 @@ function getRepoContributors(repoOwner, repoName, cb) {
 
 }
 
-getRepoContributors("jquery", "jquery", downloadImageByURL);
+getRepoContributors(owner, name, downloadImageByURL);
