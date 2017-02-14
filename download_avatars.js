@@ -19,7 +19,10 @@ function downloadImageByURL(url, filePath) {
 }
 
 function getRepoContributors(repoOwner, repoName, cb) {
-
+  if (!owner || !name) {
+    console.log("Please specify both arguments");
+    return;
+  }
   var requestURL = {
     url: 'https://' + GITHUB_USER + ':' + GITHUB_TOKEN + '@api.github.com/repos/' + owner + '/' + name + '/contributors',
     headers: {
