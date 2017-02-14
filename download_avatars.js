@@ -16,7 +16,6 @@ function getRepoContributors(repoOwner, repoName, cb) {
 
 
   request.get(requestURL, function(error, response){
-    //console.log(JSON.parse(response.body));
     extract_avatarUrl(JSON.parse(response.body));
   })
 
@@ -26,21 +25,21 @@ function getRepoContributors(repoOwner, repoName, cb) {
     });
   }
 
-  function downloadImageByURL(url, filePath) {
-  // ...
-  }
+var request = require('request');
+var fs = require('fs');
 
+var url = "https://avatars2.githubusercontent.com/u/2741?v=3&s=466";
+var filePath = "avatars/kvirani.jpg";
 
-  //.pipe(fs.createWriteStream('./requestFile.txt'));
+request.get(url + '/' + filePath)
+  .on('error', function(err) {
+    throw err;
+  })
+  .on('response', function(response) {
+    console.log('Response Status Code: ', response.statusCode);
+  })
+  .pipe(fs.createWriteStream('./avatar/future.jpg'));
 
-    // .on('error', function(err) {
-    //   throw err;
-    // })
-    // .on('response', function(response) {
-    //   console.log(response.body);
-    //   console.log('Response Status Code: ', response.statusCode);
-    //  //console.log(response);
-    // })
 }
 
 getRepoContributors("jquery", "jquery", function(err, result) {
