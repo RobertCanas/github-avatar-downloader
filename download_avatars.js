@@ -10,7 +10,6 @@ var name = process.argv[3];
 
 
 function downloadImageByURL(url, filePath) {
-  // ...
   request.get(url)
     .on('error', function(err) {
       throw err;
@@ -30,18 +29,10 @@ function getRepoContributors(repoOwner, repoName, cb) {
     }
   };
 
-  // function extract_avatarUrl(response){
-  //   response.map(function(cv, index){
-  //     //console.log(cv.avatar_url);
-  //   });
-  // }
-
   request.get(requestURL, function(error, response) {
     var contributors = (JSON.parse(response.body));
-    //console.log(contributors);
     for (var i = 0; i < contributors.length; i++) {
       var loginUser = contributors[i].login;
-      //console.log(loginUser);
       var filePath = './avatars/' + loginUser + '.jpg';
       cb(contributors[i].avatar_url, filePath);
     }
